@@ -1,23 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
 
-const WeatherChart = ({ hourlyForecast, unit }) => {
-  if (!hourlyForecast || hourlyForecast.length === 0) {
-    return <p>No hourly forecast available.</p>;
+const WeatherChart = ({ location }) => {
+  const [hourlyForecast, setHourlyForecast] = useState(null);
+
+  useEffect(() => {
+    // Fetch hourly forecast data based on location
+    // const fetchHourlyForecast = async () => {
+    //   // Call your API to fetch hourly forecast data based on the location
+    //   // const data = await yourWeatherAPI.getHourlyForecast(location);
+    //   // setHourlyForecast(data);
+    // };
+    // fetchHourlyForecast();
+
+    // Temporary dummy data
+    const data = [
+      {
+        time: '10:00 AM',
+        temperature: 28,
+        chanceOfPrecipitation: 0,
+      },
+      {
+        time: '11:00 AM',
+        temperature: 30,
+        chanceOfPrecipitation: 5,
+      },
+      // Add more hourly forecast data
+    ];
+    setHourlyForecast(data);
+  }, [location]);
+
+  if (!hourlyForecast) {
+    return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h2>Hourly Forecast</h2>
-      <ul>
+    <Card>
+      <CardContent>
+        <Typography variant="h5" component="div">
+          Hourly Forecast for {location}
+        </Typography>
         {hourlyForecast.map((forecast) => (
-          <li key={forecast.time}>
-            <p>Time: {forecast.time}</p>
-            <p>Temperature: {forecast.temp}°{unit}</p>
-            <p>Chance of Precipitation: {forecast.chanceOfPrecipitation}%</p>
-          </li>
+          <div key={forecast.time}>
+            <Typography variant="h6" component="div">
+              Time: {forecast.time}
+            </Typography>
+            <Typography variant="body1" component="div">
+              Temperature: {forecast.temperature}°C
+            </Typography>
+            <Typography variant="body2" component="div">
+              Chance of Precipitation: {forecast.chanceOfPrecipitation}%
+            </Typography>
+          </div>
         ))}
-      </ul>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,7 +1,7 @@
 // weatherService.js
-const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY';
-
 export const getWeatherData = async (location) => {
+  const API_KEY = 'b6c2eaa7425489c98267cea9eb66a73a';
+
   try {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}`

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button } from '@mui/material';
 
 const SearchBar = ({ onSearch }) => {
   const [location, setLocation] = useState('');
@@ -6,17 +7,19 @@ const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(location);
+    setLocation('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Enter location"
+      <TextField
+        label="Location"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      <button type="submit">Search</button>
+      <Button type="submit" variant="contained" color="primary">
+        Search
+      </Button>
     </form>
   );
 };

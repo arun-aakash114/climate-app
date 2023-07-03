@@ -1,23 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
 
-const WeatherCard = ({ weatherData, unit }) => {
-  if (!weatherData) return null;
+const WeatherCard = ({ location }) => {
+  const [weatherData, setWeatherData] = useState(null);
 
-  const { temp, weather } = weatherData;
+  useEffect(() => {
+    // Fetch weather data based on location
+    // const fetchWeatherData = async () => {
+    //   // Call your API to fetch weather data based on the location
+    //   // const data = await yourWeatherAPI.getWeatherData(location);
+    //   // setWeatherData(data);
+    // };
+    // fetchWeatherData();
 
-  const convertToFahrenheit = (celsius) => {
-    return (celsius * 9) / 5 + 32;
-  };
+    // Temporary dummy data
+    const data = {
+      temperature: 25,
+      weather: 'Sunny',
+      description: 'Clear skies',
+    };
+    setWeatherData(data);
+  }, [location]);
+
+  if (!weatherData) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <h2>Current Weather</h2>
-      <p>
-        Temperature: {unit === 'celsius' ? temp : convertToFahrenheit(temp)}°{unit.toUpperCase()}
-      </p>
-      <p>Description: {weather}</p>
-      {/* Display weather icon */}
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h5" component="div">
+          Current Weather for {location}
+        </Typography>
+        <Typography variant="h6" component="div">
+          Temperature: {weatherData.temperature}°C
+        </Typography>
+        <Typography variant="body1" component="div">
+          Weather: {weatherData.weather}
+        </Typography>
+        <Typography variant="body2" component="div">
+          Description: {weatherData.description}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 
