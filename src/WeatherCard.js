@@ -27,8 +27,8 @@ const WeatherCard = ({ location }) => {
   }
 
   return (
-    <Card>
-      <CardContent>
+    <Card className='weather'>
+      <CardContent >
         <Typography variant="h5" component="div">
           Current Weather for {location}
         </Typography>

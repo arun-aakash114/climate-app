@@ -35,7 +35,7 @@ const WeatherChart = ({ location }) => {
   }
 
   return (
-    <Card>
+    <Card className='weather'>
       <CardContent>
         <Typography variant="h5" component="div">
           Hourly Forecast for {location}

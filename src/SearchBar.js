@@ -11,15 +11,18 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='submit_button'>
       <TextField
         label="Location"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      <Button type="submit" variant="contained" color="primary">
+      <br></br>
+      <div className='search'>
+      <Button   type="submit" variant="contained" color="primary">
         Search
       </Button>
+      </div>
     </form>
   );
 };
